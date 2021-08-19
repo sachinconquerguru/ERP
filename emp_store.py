@@ -1,0 +1,3 @@
+employee = {}
+teams = {}
+organization = {}
