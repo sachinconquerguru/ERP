@@ -7,13 +7,14 @@ organization = {}
 def erp_menu():
     print("1.Add Employee")
     print("2.Delete Employee")
-    print("3.Search Employee by name")
+    print("3.Search Employee")
     print("4.Change Employee Data")
     print("5.Display Employee data : ")
     print("6.Manage all Teams ")
-    print("7.manage organization")
-    print("6.exit")
+    print("8.exit")
 #    choice = int(input("Enter your choice :"))
+
+
 def manage_organization():
     print("1.Add organization")
     print("2.edit organization")
@@ -66,7 +67,6 @@ def display_organization():
 
 
 
-
 def add_employee_details():
 
     emp_id = input("\tEnter employee id :")
@@ -100,18 +100,38 @@ def delete_employee():
         del employee[emp_id]
 
 
+def search_employee_all_menu():
+    print("\t1.Search Employee name")
+    print("\t2.Search Employee age")
+    print("\t3.Search Employee salery")
+    print("\t4.Search Employee gender")
+    print("\t5.exit")
+    
       
 
 def search_employee_name():
-    name = input("\tEnter the name you want search :")
-    flag = False
-    for i in employee.values():
-        if i["name"] == name:
-            print(f"\t{i['name']} | {i['age']} | {i['gender']} | {i['place']} | {i['salary']} | {i['previous_company']} | {i['joining_date']} ")
-            flag = True
-            break
-    if flag == False :
-        print("\tNot found")
+    search_employee_all_menu()
+    while True:
+        ch = int(input("\ttenter your choice : "))
+        if ch == 1:
+
+
+            name = input("\tEnter the name you want search :")
+            print(list(filter(lambda a: a["name"] == name,employee.values())))
+        elif ch == 2:
+            age = int(input("\tEnter the age to be search : "))
+            print(list(filter(lambda a: a["age"] == age,employee.values())))
+        elif ch == 3:
+            salary = int(input("\tEnter the salery to be search : "))
+            print(list(filter(lambda a: a["salary"] == salary,employee.values())))
+        elif ch == 4:
+            gender = input("\tEnter the gender to be search ::")
+            print(list(filter(lambda a: a["gender"] == gender,employee.values())))
+        elif ch == 5:
+            break;
+        else:
+            print("invalid choice")
+	
 
 
 
@@ -244,6 +264,7 @@ def delete_employee_from_team(team_name):
 
 
 while True :
+    manage_all_organization()
     erp_menu()
     ch = int(input("Enter the choice"))
     if ch == 1 :
@@ -265,9 +286,6 @@ while True :
         print("--------Manage all Teams-----")
         managa_all_teams()
     elif ch == 7:
-        print("--------manage organization-----")
-        manage_all_organization()
-    elif ch == 8:
         break;
     else:
         print("Invalid Choice")
